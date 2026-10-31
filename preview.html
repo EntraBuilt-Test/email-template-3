@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nordic Affairs Media - Email Template Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FFD24C;
+      --primary-header: #FCC66C;
+      --primary-hover: #F5B82E;
+      --bg: #0F172A;
+      --sidebar-bg: #1E293B;
+      --border: #334155;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Top Navigation Bar */
+    header {
+      background-color: var(--sidebar-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 20;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-badge {
+      background-color: #FCC66C;
+      color: #111827;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      border: 1.5px solid #111827;
+    }
+
+    .title-area h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+    }
+
+    .title-area p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Device Viewport Switcher */
+    .viewport-controls {
+      display: flex;
+      background: #0B0F19;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      gap: 4px;
+    }
+
+    .vp-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .vp-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .vp-btn.active {
+      background: #FCC66C;
+      color: #111827;
+      font-weight: 800;
+      box-shadow: 0 2px 8px rgba(252, 198, 108, 0.4);
+    }
+
+    /* Action Buttons in Header */
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: #0B0F19;
+      color: var(--text-main);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: #1e293b;
+      border-color: #475569;
+    }
+
+    .btn-gold-action {
+      background-color: #FFD24C;
+      color: #111827;
+    }
+
+    .btn-gold-action:hover {
+      background-color: #F5B82E;
+      box-shadow: 0 4px 14px rgba(255, 210, 76, 0.4);
+    }
+
+    /* Main Layout */
+    .app-body {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 61px);
+      overflow: hidden;
+    }
+
+    /* Left Sidebar Customizer */
+    .sidebar {
+      width: 320px;
+      background-color: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: auto;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .input-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+
+    .input-group input {
+      background: #0F172A;
+      border: 1px solid var(--border);
+      color: #FFFFFF;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: #FCC66C;
+    }
+
+    /* Info Callout */
+    .feature-list {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .feature-list strong {
+      color: #FFFFFF;
+    }
+
+    .feature-list li {
+      margin-left: 16px;
+      margin-top: 5px;
+    }
+
+    /* Preview Canvas Area */
+    .canvas-area {
+      flex: 1;
+      background-color: #090D16;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 24px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .frame-wrapper {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      border-radius: 16px;
+      background: #FFFFFF;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .frame-header {
+      background: #1E293B;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #334155;
+    }
+
+    .frame-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot.red { background: #EF4444; }
+    .dot.yellow { background: #F59E0B; }
+    .dot.green { background: #10B981; }
+
+    .frame-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #94A3B8;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 980px;
+      background: #F4F4F6;
+      transition: background 0.2s ease;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10B981;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="brand-section">
+      <div class="logo-badge">NAM</div>
+      <div class="title-area">
+        <h1>Nordic Affairs Media Studio</h1>
+        <p>Simple Editorial Email with Single Enquiry Button</p>
+      </div>
+    </div>
+
+    <!-- Viewport Switcher -->
+    <div class="viewport-controls">
+      <button class="vp-btn active" onclick="setViewport('desktop')" id="btn-desktop">
+        💻 Desktop (640px)
+      </button>
+      <button class="vp-btn" onclick="setViewport('tablet')" id="btn-tablet">
+        📱 Tablet (520px)
+      </button>
+      <button class="vp-btn" onclick="setViewport('mobile')" id="btn-mobile">
+        📲 Mobile (380px)
+      </button>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn btn-secondary" onclick="openRawHtml()">
+        📄 Open Raw HTML
+      </button>
+      <button class="btn btn-gold-action" onclick="copyEmailHtml()">
+        📋 Copy HTML Code
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Work Area -->
+  <div class="app-body">
+    
+    <!-- Sidebar Controls -->
+    <aside class="sidebar">
+      <div>
+        <div class="section-title">Brand & Button Settings</div>
+        
+        <div class="input-group">
+          <label for="companyName">Company Name</label>
+          <input type="text" id="companyName" value="NORDIC AFFAIRS MEDIA" oninput="applyCustomizations()">
+        </div>
+
+        <div class="input-group">
+          <label for="btnText">Single Button Label</label>
+          <input type="text" id="btnText" value="ENQUIRY &rarr;" oninput="applyCustomizations()">
+        </div>
+
+        <div class="input-group">
+          <label for="enquiryUrl">Enquiry Destination URL</label>
+          <input type="text" id="enquiryUrl" value="https://nordicaffairsmedia.com/en" oninput="applyCustomizations()">
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Verified Content Structure</div>
+        <div class="feature-list">
+          <strong>Based on nordicaffairsmedia.com:</strong>
+          <ul>
+            <li><strong>Official Header:</strong> Yellow banner (#FCC66C) with Swedish Press Association credit.</li>
+            <li><strong>Top Hero:</strong> Palace Hall royal ceremony photo banner.</li>
+            <li><strong>3 Core Pillars:</strong>
+              <br/>&bull; Professional Standards (Accredited)
+              <br/>&bull; Our Vision (Impactful Stories)
+              <br/>&bull; Stockholm & Worldwide
+            </li>
+            <li><strong>Bottom Hero:</strong> Palace Courtyard ceremony photo banner.</li>
+            <li><strong>Single Button:</strong> Only one clear golden ENQUIRY button.</li>
+            <li><strong>Stockholm Footer:</strong> Official credentials and contact links.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top: auto;">
+        <button class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="downloadHtml()">
+          💾 Download Email Template
+        </button>
+      </div>
+    </aside>
+
+    <!-- Canvas Preview Area -->
+    <main class="canvas-area">
+      <div class="frame-wrapper" id="frameWrapper" style="width: 640px;">
+        <div class="frame-header">
+          <div class="frame-dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+          </div>
+          <div class="frame-title" id="frameLabel">640px &bull; Desktop Preview</div>
+          <div style="width: 40px;"></div>
+        </div>
+        <iframe id="previewIframe" src="email-template.html"></iframe>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span>✓</span>
+    <span id="toastMsg">HTML template copied to clipboard!</span>
+  </div>
+
+  <script>
+    let rawHtmlCache = '';
+
+    // Load initial HTML
+    fetch('email-template.html')
+      .then(res => res.text())
+      .then(html => {
+        rawHtmlCache = html;
+        updateIframe();
+      });
+
+    function setViewport(device) {
+      const wrapper = document.getElementById('frameWrapper');
+      const label = document.getElementById('frameLabel');
+      
+      document.querySelectorAll('.vp-btn').forEach(b => b.classList.remove('active'));
+
+      if (device === 'desktop') {
+        wrapper.style.width = '640px';
+        label.textContent = '640px • Desktop Preview';
+        document.getElementById('btn-desktop').classList.add('active');
+      } else if (device === 'tablet') {
+        wrapper.style.width = '520px';
+        label.textContent = '520px • Tablet View';
+        document.getElementById('btn-tablet').classList.add('active');
+      } else if (device === 'mobile') {
+        wrapper.style.width = '380px';
+        label.textContent = '380px • Mobile (iPhone/Android)';
+        document.getElementById('btn-mobile').classList.add('active');
+      }
+    }
+
+    function getCustomizedHtml() {
+      if (!rawHtmlCache) return '';
+      const name = document.getElementById('companyName').value || 'NORDIC AFFAIRS MEDIA';
+      const btn = document.getElementById('btnText').value || 'ENQUIRY &rarr;';
+      const url = document.getElementById('enquiryUrl').value || 'https://nordicaffairsmedia.com/en';
+
+      return rawHtmlCache
+        .replace(/NORDIC AFFAIRS MEDIA/g, name)
+        .replace(/ENQUIRY &rarr;/g, btn)
+        .replace(/https:\/\/nordicaffairsmedia\.com\/en/g, url);
+    }
+
+    function applyCustomizations() {
+      updateIframe();
+    }
+
+    function updateIframe() {
+      const html = getCustomizedHtml();
+      const iframe = document.getElementById('previewIframe');
+      iframe.srcdoc = html;
+    }
+
+    function copyEmailHtml() {
+      const html = getCustomizedHtml();
+      navigator.clipboard.writeText(html).then(() => {
+        showToast('✓ Production HTML email copied to clipboard!');
+      });
+    }
+
+    function openRawHtml() {
+      window.open('email-template.html', '_blank');
+    }
+
+    function downloadHtml() {
+      const html = getCustomizedHtml();
+      const blob = new Blob([html], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'nordic-affairs-media-email.html';
+      a.click();
+      showToast('✓ Customized email template downloaded!');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
